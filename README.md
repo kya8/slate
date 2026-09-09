@@ -8,7 +8,7 @@ slate: Utilities and libraries for working with video files produced by some cam
 
 # Command-line tools
 
-[![Build](https://github.com/kya8/slate/actions/workflows/build.yml/badge.svg?event=push)](https://github.com/kya8/slate/actions/workflows/build.yml)
+[![CI](https://github.com/kya8/slate/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/kya8/slate/actions/workflows/ci.yml)
 
 * `slate`: Inspect and dump various information and metadata extracted from video files.
 
