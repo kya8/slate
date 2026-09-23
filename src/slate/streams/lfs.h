@@ -12,24 +12,16 @@ extern "C" {
 #include <stdio.h>
 }
 
-// Wrappers for 64-bit fseek/ftell
+// Alias for 64-bit fseek/ftell
 
 namespace slate::detail {
 
 #ifdef _WIN32
-inline auto fseek64(FILE* stream, long long offset, int whence) {
-    return _fseeki64(stream, offset, whence);
-}
-inline auto ftell64(FILE* stream) {
-    return _ftelli64(stream);
-}
-#else
-inline auto fseek64(FILE* stream, off_t offset, int whence) {
-    return fseeko(stream, offset, whence);
-}
-inline auto ftell64(FILE* stream) {
-    return ftello(stream);
-}
+inline auto& fseek64 = _fseeki64;
+inline auto& ftell64 = _ftelli64;
+#else // POSIX
+inline auto& fseek64 = fseeko;
+inline auto& ftell64 = ftello;
 #endif
 
 } // namespace slate::detail
