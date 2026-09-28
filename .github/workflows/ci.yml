@@ -26,7 +26,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        os: [ubuntu-26.04, ubuntu-26.04-arm, windows-latest, macos-latest]
+        os: [ubuntu-26.04, ubuntu-26.04-arm, windows-latest, windows-11-arm, macos-latest]
         build_type: [Release]
         include:
           - os: macos-latest
@@ -36,6 +36,10 @@ jobs:
             bin_ext: ".exe"
             # cmake_extra_flags: "-D CMAKE_MSVC_RUNTIME_LIBRARY='MultiThreaded$<$<CONFIG:Debug>:Debug>'"
             vcpkg_triplet: "x64-windows-static-md"
+          - os: windows-11-arm
+            bin_ext: ".exe"
+            # cmake_extra_flags: "-D CMAKE_MSVC_RUNTIME_LIBRARY='MultiThreaded$<$<CONFIG:Debug>:Debug>'"
+            vcpkg_triplet: "arm64-windows-static-md"
           - os: ubuntu-26.04
             vcpkg_triplet: "x64-linux"
             # container-image: "kya8/fedora-dev:latest"
@@ -69,7 +73,7 @@ jobs:
       if: ${{ runner.os == 'Windows' }}
       uses: TheMrMilchmann/setup-msvc-dev@v4
       with:
-        arch: x64
+          arch: ${{ case(runner.arch == 'X64', 'x64', 'amd64_arm64') }}
 
     - name: Setup the container
       if: ${{ matrix.container-image != '' }}
