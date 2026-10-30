@@ -57,7 +57,7 @@ jobs:
 
     - name: Restore vcpkg exports from cache
       id: cache-restore-exports
-      uses: actions/cache/restore@v5
+      uses: actions/cache/restore@v6
       with:
         path: ${{ env.vcpkg_exports }}
         # Cache invalidation factors: vcpkg triplet, changes to vcpkg.json or vcpkg-configuration.json
@@ -90,7 +90,7 @@ jobs:
 
     - name: Save cache of vcpkg exports
       if: steps.cache-restore-exports.outputs.cache-hit != 'true'
-      uses: actions/cache/save@v5
+      uses: actions/cache/save@v6
       with:
         path: ${{ env.vcpkg_exports }}
         key: ${{ steps.cache-restore-exports.outputs.cache-primary-key }}
