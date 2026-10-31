@@ -121,5 +121,5 @@ jobs:
       with:
         name: slate-${{ github.sha }}-${{ runner.os }}_${{ runner.arch }}
         path: |
-          ${{ steps.strings.outputs.build_dir }}/*.tar.*
+          ${{ steps.strings.outputs.build_dir }}/slate-*.tar.*
         archive: false
