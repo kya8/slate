@@ -1,6 +1,4 @@
 # https://EditorConfig.org
-
-# top-most EditorConfig file
 root = true
 
 [*]
@@ -13,3 +11,7 @@ trim_trailing_whitespace = true
 
 [*.md]
 trim_trailing_whitespace = false
+
+[*.{sh,zsh,bash}]
+indent_style = space
+indent_size = 2
